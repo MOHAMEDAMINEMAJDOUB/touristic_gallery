@@ -78,7 +78,8 @@ app.post('/api/register', (req, res) => {
       }
 
       // Send confirmation email
-      const mailOptions = {
+      const mailOptions =
+      {
         from: 'mjdbamin@gmail.com',
         to: email,
         subject: 'Registration Confirmation',
