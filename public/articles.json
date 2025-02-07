@@ -1,0 +1,29 @@
+{
+  "articles": [
+    {
+      "title": "10 Reasons to Visit Djerba",
+      "description": "Djerba, the 'Island of Dreams,' is a must-visit destination offering pristine beaches, a rich blend of cultures, and historical landmarks. From the serene Flamingo Island to the vibrant Houmt Souk markets, the island captivates visitors with its unique architecture, delicious Tunisian cuisine, and exciting activities like snorkeling and kite surfing. Djerba is a paradise for travelers seeking relaxation, adventure, and cultural exploration.",
+      "id": "729b"
+    },
+    {
+      "title": "Top 5 Beaches in Djerba",
+      "description": "Discover the stunning coastline of Djerba with its top five beaches: Sidi Mahrez Beach, known for its white sand and calm waters; Seguia Beach, a family-friendly retreat; Aghir Beach, a haven for privacy seekers; La Lagune, perfect for water sports; and Plage de l'île aux Flamants, a hidden gem near Flamingo Island. Each beach offers unique experiences, from sunbathing to adventure.",
+      "id": "cbb9"
+    },
+    {
+      "title": "The Cultural Heritage of Djerba",
+      "description": "Djerba's cultural richness is reflected in its whitewashed houses, historic El Ghriba Synagogue, and vibrant markets filled with handmade crafts. The island is also known for its traditional music, dance, and a diverse culinary scene influenced by Berber, Arab, and Jewish traditions. Visitors can immerse themselves in the island's heritage while exploring its architectural and artistic treasures.",
+      "id": "0870"
+    },
+    {
+      "title": "Djerba: A Nature Lover's Paradise",
+      "description": "Nature lovers will adore Djerba for its picturesque landscapes, olive groves, and wildlife sanctuaries like Flamingo Island. The island offers opportunities for eco-tourism, including snorkeling, horseback riding along the beaches, and cycling through scenic countryside paths. Whether you're an adventurer or a photographer, Djerba's natural beauty will leave you spellbound.",
+      "id": "e37d"
+    },
+    {
+      "title": "A Culinary Journey in Djerba",
+      "description": "Djerba is a food lover’s delight, offering a variety of flavors that reflect its multicultural history. From crispy brik pastries and flavorful couscous to fresh seafood and traditional sweets like makroudh, the island's cuisine is a feast for the senses. Pair your meals with refreshing mint tea or explore the bustling markets for spices and local delicacies.",
+      "id": "249a"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        /* Réinitialisation des marges et du padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Titres principaux */
+        h1, h2 {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Titres de page */
+        h1 {
+            font-size: 2.5rem;
+            color: #005f73;
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: #005f73; /* Couleur de fond de l'en-tête */
+        }
+        header h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            height: 10vh;
+            padding-top: 10px;
+            text-align: center;
+
+        }
+
+        /* Section de texte */
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Style des cartes */
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: transform 0.2s ease;
+            flex: 1 1 calc(33.33% - 20px);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Titres des cartes */
+        .card h3 {
+            font-size: 1.5rem;
+            color: #0a9396;
+            margin-bottom: 10px;
+        }
+
+        /* Section de cartes */
+        .section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            padding: 40px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Liens */
+        a {
+            text-decoration: none;
+            color: #0a9396;
+        }
+
+        a:hover {
+            color: #005f73;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Our Popular Destinations</h1>
+    </header>
+
+    <div class="section" id="destinations">
+        <!-- Les cartes de destinations seront insérées ici -->
+    </div>
+
+    <script>
+        // Fonction pour récupérer les destinations via Axios
+        async function fetchDestinations() {
+            try {
+                const response = await axios.get('http://localhost:3000/destinations');
+                const destinations = response.data;
+
+                const destinationsContainer = document.getElementById('destinations');
+                destinations.forEach(destination => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.innerHTML = `
+                        
+                        <h3>${destination.title}</h3>
+                        <p>${destination.description}</p>
+                    `;
+                    destinationsContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error("Error fetching destinations:", error);
+            }
+        }
+
+        // Appel de la fonction pour charger les destinations
+        fetchDestinations();
+    </script>
+
+</body>
+
+</html>

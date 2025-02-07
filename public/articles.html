@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+
+    <style>
+        /* Réinitialisation des marges et du padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styles généraux */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4; /* Fond général */
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #005f73; /* Couleur de fond de l'en-tête */
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        /* Conteneur des articles */
+        .articles-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 40px;
+            gap: 30px;
+        }
+
+        /* Carte d'article */
+        .article-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            width: 280px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px); /* Animation au survol */
+        }
+
+        /* Titre de la carte */
+        .article-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #0a9396; /* Couleur distincte */
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Description de l'article */
+        .article-card p {
+            font-size: 1.1rem;
+            color: #7f8c8d; /* Couleur douce pour le texte */
+            line-height: 1.5;
+        }
+
+        /* Responsivité */
+        @media (max-width: 768px) {
+            .articles-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .article-card {
+                width: 90%;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Our Latest Articles</h1>
+    </header>
+
+    <div id="articles-container" class="articles-container">
+        <!-- Les articles seront insérés ici -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const articlesContainer = document.getElementById('articles-container');
+            try {
+                const response = await axios.get('http://localhost:5000/articles');
+                const articles = response.data;
+
+                articles.forEach(article => {
+                    const card = document.createElement('div');
+                    card.classList.add('article-card');
+
+                    const title = document.createElement('h3');
+                    title.textContent = article.title;
+                    card.appendChild(title);
+
+                    const description = document.createElement('p');
+                    description.textContent = article.description;
+                    card.appendChild(description);
+
+                    articlesContainer.appendChild(card);
+                });
+            } catch (error) {
+                console.error('Error fetching articles:', error);
+                articlesContainer.innerHTML = '<p>Failed to load articles. Please try again later.</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>

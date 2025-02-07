@@ -1,0 +1,64 @@
+{
+  "destinations": [
+    {
+      "title": "Sidi Mahrez Beach",
+      "type": "Beach",
+      "description": "Sidi Mahrez Beach is one of the most iconic beaches in Djerba, known for its expansive stretches of fine white sand and calm turquoise waters. This beach is perfect for sunbathing, swimming, and enjoying water sports. Visitors are drawn to its relaxing ambiance and stunning sunsets. Coordinates: 33.8728, 9.4575. Activities: Swimming, Sunbathing, Jet Skiing.",
+      "id": "e4f1"
+    },
+    {
+      "title": "El Ghriba Synagogue",
+      "type": "Cultural/Religious Site",
+      "description": "El Ghriba Synagogue is a historical and spiritual landmark in Djerba, renowned as one of the oldest synagogues in North Africa. This site is rich in history, attracting pilgrims and tourists alike for its stunning architecture and cultural significance. Coordinates: 33.8581, 9.3475. Activities: Sightseeing, Cultural Exploration, Photography.",
+      "id": "ad86"
+    },
+    {
+      "title": "Djerba Explore Park",
+      "type": "Theme Park",
+      "description": "Djerba Explore Park offers an immersive experience for families and individuals, combining a fascinating heritage museum, a crocodile farm, and artisanal craft displays. Visitors can enjoy close encounters with crocodiles and learn about the island's rich history. Coordinates: 33.8544, 9.5471. Activities: Zoo Visits, Cultural Exhibitions, Shopping.",
+      "id": "ef6a"
+    },
+    {
+      "title": "Houmt Souk",
+      "type": "Market",
+      "description": "Houmt Souk is the vibrant main town of Djerba, brimming with colorful markets and bustling streets. This destination is ideal for discovering local crafts, spices, and traditional Tunisian goods. Coordinates: 33.8802, 9.4295. Activities: Shopping, Culinary Exploration, Sightseeing.",
+      "id": "c83f"
+    },
+    {
+      "title": "Fadhloun Mosque",
+      "type": "Religious Site",
+      "description": "Fadhloun Mosque is a beautiful example of traditional Djerban architecture, set amidst a serene landscape. The mosque offers insights into local religious practices and cultural heritage. Coordinates: 33.8531, 9.3715. Activities: Historical Exploration, Photography.",
+      "id": "c1f0"
+    },
+    {
+      "title": "Seguia Beach",
+      "type": "Beach",
+      "description": "Seguia Beach is a tranquil paradise offering shallow waters and a peaceful atmosphere, perfect for families with young children. This less crowded spot is ideal for relaxation and picnics. Coordinates: 33.8660, 9.5378. Activities: Swimming, Family Picnics, Relaxation.",
+      "id": "10ce"
+    },
+    {
+      "title": "Guellala Museum",
+      "type": "Cultural Museum",
+      "description": "Guellala Museum showcases Djerba's traditional lifestyle, from pottery making to wedding ceremonies. Visitors can explore the rich customs and artistry of the island. Coordinates: 33.7721, 10.8289. Activities: Cultural Exhibitions, Photography, Pottery Demonstrations.",
+      "id": "c9a3"
+    },
+    {
+      "title": "Flamingo Island",
+      "type": "Nature Reserve",
+      "description": "Flamingo Island is a stunning natural reserve accessible by boat. Known for its diverse birdlife, including pink flamingos, this island is a haven for nature enthusiasts. Coordinates: 33.8556, 9.3194. Activities: Bird Watching, Boat Tours, Photography.",
+      "id": "5301"
+    },
+    {
+      "title": "Aghir Beach",
+      "type": "Beach",
+      "description": "Aghir Beach is a hidden gem in Djerba, offering tranquility and scenic beauty. Its pristine waters and quiet surroundings make it perfect for those seeking solitude. Coordinates: 33.7824, 10.9101. Activities: Swimming, Sunbathing, Beachcombing.",
+      "id": "fe0b"
+    },
+    {
+      "title": "Borj El Kebir",
+      "type": "Historical Fort",
+      "description": "Borj El Kebir is a historic fortress located near the port of Houmt Souk. Visitors can enjoy panoramic views of the coastline while learning about the fort's strategic importance in defending the island. Coordinates: 33.8806, 9.4203. Activities: Historical Tours, Sightseeing, Photography.",
+      "id": "3edf"
+    }
+  ]
+}

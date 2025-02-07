@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <h1>Administrator Dashboard</h1>
+        <button id="logout" class="logout-button">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </button>
+    </header>
+
+    <!-- Services Section -->
+    <div class="services">
+        <!-- First row -->
+        <div class="service" id="1" onclick="showForm('article', 'add')">Add Article</div>
+        <div class="service" id="2" onclick="showForm('article', 'modify')">Modify Article</div>
+        <div class="service" id="3" onclick="showForm('article', 'delete')">Delete Article</div>
+
+        <!-- Second row -->
+        <div class="service" id="4" onclick="showForm('destination', 'add')">Add Destination</div>
+        <div class="service" id="5" onclick="showForm('destination', 'modify')">Modify Destination</div>
+        <div class="service" id="6" onclick="showForm('destination', 'delete')">Delete Destination</div>
+    </div>
+
+    <!-- Add/Modify/Delete Article/Destination Form (Initially hidden) -->
+    <div id="form-container" class="form-container" style="display: none;">
+        <h2 id="form-title"></h2>
+        <form id="add-form">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description" id="descriptionlabel">Description</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="content" id="contentlabel" style="display: none">Content </label>
+            <textarea id="content" name="description" style="display: none"></textarea>
+
+            <button type="button" id="submit-button" onclick="lancheEvent()">Submit</button>
+            <button type="button" id="cancel" onclick="hideForm()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('logout').addEventListener('click', () => {
+            window.location.replace('login.html'); // Remplace l'URL actuelle
+        });
+
+
+        // Capitalize the first letter of a string
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        // Show the form dynamically based on action and type
+        function showForm(type, action) {
+            const formContainer = document.getElementById('form-container');
+            const formTitle = document.getElementById('form-title');
+            const submitButton = document.getElementById('submit-button');
+            const form = document.getElementById('add-form');
+
+            form.reset(); // Reset form fields
+
+            document.getElementById('description').style.display = (action === 'add' || action === 'modify') ? 'block' : 'none';
+            document.getElementById('descriptionlabel').style.display = (action === 'add' || action === 'modify') ? 'block' : 'none';
+            document.getElementById('content').style.display = action === 'modify' ? 'block' : 'none';
+            document.getElementById('contentlabel').style.display = action === 'modify' ? 'block' : 'none';
+
+            formTitle.textContent = `${capitalize(action)} ${capitalize(type)}`;
+            submitButton.textContent = `${capitalize(action)} ${capitalize(type)}`;
+            formContainer.style.display = 'block';
+        }
+
+        // Hide the form
+        function hideForm() {
+            const formContainer = document.getElementById('form-container');
+            formContainer.style.display = 'none';
+        }
+
+        // Main function to handle form submission
+        async function lancheEvent() {
+            const title = document.getElementById('title').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const content = document.getElementById('content').value.trim();
+            const action = document.getElementById('submit-button').textContent.toLowerCase();
+            const type = action.includes('article') ? 'articles' : 'destinations';
+            const port = action.includes('article') ? 5000 : 3000;
+
+            try {
+                if (action.includes('add')) {
+                    // Ajout d'une nouvelle ressource
+                    await axios.post(`http://localhost:${port}/${type}`, { title, description });
+                    alert(`${title} has been added successfully!`);
+                } else if (action.includes('modify')) {
+                    // Fetch the resource to be modified based on both title and description
+                    const response = await axios.get(`http://localhost:${port}/${type}`, { params: { title, description } });
+
+                    if (response.data.length > 0) {
+                        const resource = response.data[0]; // Assume the first match is the one to modify
+                        const updatedResource = { ...resource, description: content }; // Update description to content
+                        await axios.put(`http://localhost:${port}/${type}/${resource.id}`, updatedResource);
+                        alert(`${title} has been updated successfully!`);
+                    } else {
+                        alert(`No ${type.slice(0, -1)} found with the given title and description.`);
+                    }
+                } else if (action.includes('delete')) {
+                    // Supprimer une ressource par titre
+                    try {
+                        // Recherche de la ressource à supprimer
+                        const response = await axios.get(`http://localhost:${port}/${type}`);
+
+                        const resourceToDelete = response.data.find(element => element.title === title);
+
+                        if (resourceToDelete) {
+                            // Suppression de la ressource via Axios
+                            await axios.delete(`http://localhost:${port}/${type}/${resourceToDelete.id}`);
+                            alert(`${title} has been deleted successfully!`);
+                        } else {
+                            alert(`No ${type.slice(0, -1)} found with the given title.`);
+                        }
+                    } catch (error) {
+                        console.error("Error processing the delete request:", error);
+                        alert("There was an error processing your delete request. Please try again.");
+                    }
+                }
+            } catch (error) {
+                console.error("Error processing the request:", error);
+                if (error.response) {
+                    // Si l'erreur provient du backend
+                    alert(`Error: ${error.response.data.message || "An unexpected error occurred."}`);
+                } else {
+                    alert("There was an error processing your request. Please try again.");
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
