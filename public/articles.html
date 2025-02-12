@@ -17,13 +17,15 @@
         /* Styles généraux */
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f4f4f4; /* Fond général */
+            background-color: #f4f4f4;
+            /* Fond général */
             color: #333;
         }
 
         /* Header */
         header {
-            background-color: #005f73; /* Couleur de fond de l'en-tête */
+            background-color: #005f73;
+            /* Couleur de fond de l'en-tête */
             color: white;
             padding: 30px;
             text-align: center;
@@ -56,14 +58,16 @@
         }
 
         .article-card:hover {
-            transform: translateY(-5px); /* Animation au survol */
+            transform: translateY(-5px);
+            /* Animation au survol */
         }
 
         /* Titre de la carte */
         .article-card h3 {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: #0a9396; /* Couleur distincte */
+            color: #0a9396;
+            /* Couleur distincte */
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -71,7 +75,8 @@
         /* Description de l'article */
         .article-card p {
             font-size: 1.1rem;
-            color: #7f8c8d; /* Couleur douce pour le texte */
+            color: #7f8c8d;
+            /* Couleur douce pour le texte */
             line-height: 1.5;
         }
 
@@ -104,7 +109,7 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const articlesContainer = document.getElementById('articles-container');
             try {
-                const response = await axios.get('http://localhost:5000/articles');
+                const response = await axios.get('http://localhost:3001/api/articles');
                 const articles = response.data;
 
                 articles.forEach(article => {
@@ -116,7 +121,7 @@
                     card.appendChild(title);
 
                     const description = document.createElement('p');
-                    description.textContent = article.description;
+                    description.textContent = article.description; // Assurez-vous que le champ 'content' est utilisé pour le contenu de l'article
                     card.appendChild(description);
 
                     articlesContainer.appendChild(card);

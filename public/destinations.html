@@ -23,7 +23,8 @@
         }
 
         /* Titres principaux */
-        h1, h2 {
+        h1,
+        h2 {
             font-weight: bold;
             color: #333;
         }
@@ -34,8 +35,10 @@
             color: #005f73;
             margin-bottom: 20px;
             text-align: center;
-            background-color: #005f73; /* Couleur de fond de l'en-tête */
+            background-color: #005f73;
+            /* Couleur de fond de l'en-tête */
         }
+
         header h1 {
             font-size: 2.5rem;
             color: #ffffff;
@@ -125,7 +128,7 @@
         // Fonction pour récupérer les destinations via Axios
         async function fetchDestinations() {
             try {
-                const response = await axios.get('http://localhost:3000/destinations');
+                const response = await axios.get('http://localhost:3001/api/destinations');
                 const destinations = response.data;
 
                 const destinationsContainer = document.getElementById('destinations');
@@ -133,7 +136,6 @@
                     const card = document.createElement('div');
                     card.classList.add('card');
                     card.innerHTML = `
-                        
                         <h3>${destination.title}</h3>
                         <p>${destination.description}</p>
                     `;

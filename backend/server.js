@@ -1,15 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
-const path = require('path');  // Importer le module path
+const path = require('path');
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // Middleware pour servir les fichiers statiques du dossier public
-app.use(express.static(path.join(__dirname, '../public'))); // Assurez-vous que le chemin est correct
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Middleware pour le traitement des requêtes
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,10 +19,10 @@ app.use(cors());
 
 // Configuration de la connexion à la base de données MySQL
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '', // Assurez-vous de définir un mot de passe sécurisé ici
-  database: 'djerba_guide'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 // Connexion à la base de données
@@ -39,8 +40,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: 'mjdbamin@gmail.com', // Remplacez par votre email
-    pass: 'popg zayc eplu zzbz' // Remplacez par votre mot de passe
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
 });
 
@@ -80,7 +81,7 @@ app.post('/api/register', (req, res) => {
       // Send confirmation email
       const mailOptions =
       {
-        from: 'mjdbamin@gmail.com',
+        from: process.env.EMAIL_USER,
         to: email,
         subject: 'Registration Confirmation',
         text: 'Thank you for registering with Djerba Guide! Explore the beauty of Djerba now.'
@@ -106,7 +107,7 @@ app.post('/submit', (req, res) => {
   // Define the mail options
   const mailOptions = {
     from: email, // The email from the form
-    to: 'mjdbamin@gmail.com', // Your email address
+    to: process.env.EMAIL_USER, // Your email address
     subject: 'New Message from Contact Form',
     text: `
       You have a new message from ${name} (${email}):
@@ -156,8 +157,123 @@ app.post('/login', (req, res) => {
     }
   });
 });
+// Route to get all articles
+app.get('/api/articles', async (req, res) => {
+  try {
+    const [results] = await db.promise().query('SELECT * FROM articles');
+    res.status(200).json(results);
+  } catch (err) {
+    console.error('Error fetching articles:', err);
+    res.status(500).json({ message: 'Error fetching articles' });
+  }
+});
 
-// Start the server
+// Route to add a new article
+app.post('/api/articles', async (req, res) => {
+  const { title, description } = req.body;
+
+  if (!title || !description) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    const [result] = await db.promise().query('INSERT INTO articles (title, description) VALUES (?, ?)', [title, description]);
+    res.status(201).json({ message: 'Article added successfully', articleId: result.insertId });
+  } catch (err) {
+    console.error('Error inserting article:', err);
+    res.status(500).json({ message: 'Error adding article' });
+  }
+});
+
+// Route to update an article
+app.put('/api/articles/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+
+  if (!title || !description) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    await db.promise().query('UPDATE articles SET title = ?, description = ? WHERE id = ?', [title, description, id]);
+    res.status(200).json({ message: 'Article updated successfully' });
+  } catch (err) {
+    console.error('Error updating article:', err);
+    res.status(500).json({ message: 'Error updating article' });
+  }
+});
+
+// Route to delete an article
+app.delete('/api/articles/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db.promise().query('DELETE FROM articles WHERE id = ?', [id]);
+    res.status(200).json({ message: 'Article deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting article:', err);
+    res.status(500).json({ message: 'Error deleting article' });
+  }
+});
+
+// Route to get all destinations
+app.get('/api/destinations', async (req, res) => {
+  try {
+    const [results] = await db.promise().query('SELECT * FROM destinations');
+    res.status(200).json(results);
+  } catch (err) {
+    console.error('Error fetching destinations:', err);
+    res.status(500).json({ message: 'Error fetching destinations' });
+  }
+});
+
+// Route to add a new destination
+app.post('/api/destinations', async (req, res) => {
+  const { title, description } = req.body;
+
+  if (!title || !description) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    const [result] = await db.promise().query('INSERT INTO destinations (title, description) VALUES (?, ?)', [title, description]);
+    res.status(201).json({ message: 'Destination added successfully', destinationId: result.insertId });
+  } catch (err) {
+    console.error('Error inserting destination:', err);
+    res.status(500).json({ message: 'Error adding destination' });
+  }
+});
+
+// Route to update a destination
+app.put('/api/destinations/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+
+  if (!title || !description) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
+  try {
+    await db.promise().query('UPDATE destinations SET title = ?, description = ? WHERE id = ?', [title, description, id]);
+    res.status(200).json({ message: 'Destination updated successfully' });
+  } catch (err) {
+    console.error('Error updating destination:', err);
+    res.status(500).json({ message: 'Error updating destination' });
+  }
+});
+
+// Route to delete a destination
+app.delete('/api/destinations/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db.promise().query('DELETE FROM destinations WHERE id = ?', [id]);
+    res.status(200).json({ message: 'Destination deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting destination:', err);
+    res.status(500).json({ message: 'Error deleting destination' });
+  }
+});// Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

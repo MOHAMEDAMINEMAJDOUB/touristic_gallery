@@ -9,7 +9,7 @@ export default {
       errormail: "",
       validationmail: "",
       isEmailSubmitted: false,
-      contactmssg:"",
+      contactmssg: "",
       intogallery: "Step Inside And Discover The Beauty Of Djerba Through Our Curated Collection.", // Store entered email
     };
   },
@@ -89,7 +89,7 @@ export default {
 
         .then(response => response.json())
         .then(data => {
-          this.contactmssg =data.message;  // Show the response message from the backend
+          this.contactmssg = data.message;  // Show the response message from the backend
         })
         .catch(error => {
           console.error('Error:', error);  // Handle any errors
@@ -144,28 +144,26 @@ export default {
 
       <div class="c1">
         <div class="photo-container">
-          <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\borj-el-kbir-castle-also-known-as-borj-el-ghazi-mustapha-houmt-souk-DM1ARC.jpg"
+          <img src="/images\borj-el-kbir-castle-also-known-as-borj-el-ghazi-mustapha-houmt-souk-DM1ARC.jpg"
             alt="Borj El Kbir Castle" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\djreba_explore_1_1277x459.jpg"
-            alt="Djerba Explore" />
+          <img src="/images\djreba_explore_1_1277x459.jpg" alt="Djerba Explore" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\djerbahood.jpg" alt="Djerbahood" />
+          <img src="/images\djerbahood.jpg" alt="Djerbahood" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\gallela.jpg" alt="Gallela" />
+          <img src="/images\gallela.jpg" alt="Gallela" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
@@ -173,7 +171,7 @@ export default {
 
 
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\houmtsoug.jpg" alt="Houmt Soug" />
+          <img src="/images\houmtsoug.jpg" alt="Houmt Soug" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
@@ -185,16 +183,14 @@ export default {
           </div>
         </div>
         <div class="photo-container">
-          <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\nile-crocodile-crocodylus-niloticus-djerba-explore-park-midoun-djerba-DGGFR2.jpg"
+          <img src="/public\images\nile-crocodile-crocodylus-niloticus-djerba-explore-park-midoun-djerba-DGGFR2.jpg"
             alt="Crocodiles" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\synagogue-djerba-el-ghriba-H6402X.jpg"
-            alt="El-ghriba" />
+          <img src="/public\images\synagogue-djerba-el-ghriba-H6402X.jpg" alt="El-ghriba" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
@@ -204,29 +200,26 @@ export default {
 
 
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\Taguermess Lighthouse.jpg"
-            alt="Taguermess Lighthouse" />
+          <img src="/public\images\Taguermess Lighthouse.jpg" alt="Taguermess Lighthouse" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\traditional-house-in-the-djerba-heritage-section-of-the-parc-djerba-BNJYA9.jpg"
+          <img src="/public\images\traditional-house-in-the-djerba-heritage-section-of-the-parc-djerba-BNJYA9.jpg"
             alt="Traditional house" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\traditional-mnzl.jpg" alt="Houch" />
+          <img src="/public\images\traditional-mnzl.jpg" alt="Houch" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\White Mosques of Djerba.jpg"
-            alt="Mosques of Djerba" />
+          <img src="/public\images\White Mosques of Djerba.jpg" alt="Mosques of Djerba" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
@@ -235,32 +228,26 @@ export default {
 
 
         <div class="photo-container">
-          <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\traditional-wedding-at-al-kantara-island-of-djerba-tunisia-D7RAXD.jpg"
+          <img src="/public\images\traditional-wedding-at-al-kantara-island-of-djerba-tunisia-D7RAXD.jpg"
             alt="Wedding" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\island-and-fishing-boat-djerba-tunisia-2DAGAB5.jpg"
-            alt="Island" />
+          <img src="/public\images\island-and-fishing-boat-djerba-tunisia-2DAGAB5.jpg" alt="Island" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\hotel-resort-in-djerba-tunisia-B2WM0W.jpg"
-            alt="Hotels" />
+          <img src="/public\images\hotel-resort-in-djerba-tunisia-B2WM0W.jpg" alt="Hotels" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\camels-on-the-beach-djerba-07-nov-2014-KMYWNW.jpg"
-            alt="Camels" />
+          <img src="/public\images\camels-on-the-beach-djerba-07-nov-2014-KMYWNW.jpg" alt="Camels" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
@@ -268,30 +255,27 @@ export default {
 
 
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\_content.jpg" alt="View" />
+          <img src="/public\images\_content.jpg" alt="View" />
+          <div class="overlay">
+            <a href="/public/destinations.html">See Destinations</a>
+          </div>
+        </div>
+        <div class="photo-container">
+          <img src="/public\images\club-med-la-douce-djerba-island-tunisia-B33Y1C.jpg" alt="Club" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
           <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\club-med-la-douce-djerba-island-tunisia-B33Y1C.jpg"
-            alt="Club" />
-          <div class="overlay">
-            <a href="/public/destinations.html">See Destinations</a>
-          </div>
-        </div>
-        <div class="photo-container">
-          <img
-            src="C:\Users\utilisateur\Touristic_Gallery\public\images\tunisia-djerba-20062019-parasales-water-parachutes-for-outdoor-activities-in-the-blue-sky-a-triple-water-parachute-bright-colours-paraglider-TX785F.jpg"
+            src="/public\images\tunisia-djerba-20062019-parasales-water-parachutes-for-outdoor-activities-in-the-blue-sky-a-triple-water-parachute-bright-colours-paraglider-TX785F.jpg"
             alt="Parachute" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
         </div>
         <div class="photo-container">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\tunisiadjerba-sidi-mahrs-beach-DG5WJN.jpg"
-            alt="Beach" />
+          <img src="/public\images\tunisiadjerba-sidi-mahrs-beach-DG5WJN.jpg" alt="Beach" />
           <div class="overlay">
             <a href="/public/destinations.html">See Destinations</a>
           </div>
@@ -304,19 +288,19 @@ export default {
       <h2 class="blog-title">Explore Our Latest Blog Posts</h2>
       <div class="blog-grid">
         <article class="blog-card">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\Djerba.gif" alt="Blog post 1">
+          <img src="/public\images\Djerba.gif" alt="Blog post 1">
           <h3>10 Reasons to Visit Djerba</h3>
           <p>Discover why Djerba is a must-visit destination...</p>
           <a href="/public/articles.html">Read More</a>
         </article>
         <article class="blog-card">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\beaches.jpg" alt="Blog post 2">
+          <img src="/public\images\beaches.jpg" alt="Blog post 2">
           <h3>Top 5 Beaches in Djerba</h3>
           <p>Relax on the most beautiful beaches of Djerba...</p>
           <a href="/public/articles.html">Read More</a>
         </article>
         <article class="blog-card">
-          <img src="C:\Users\utilisateur\Touristic_Gallery\public\images\heri.jpg" alt="Blog post 3">
+          <img src="/public\images\heri.jpg" alt="Blog post 3">
           <h3>The Cultural Heritage of Djerba</h3>
           <p>Explore the rich history and culture of this amazing island...</p>
           <a href="/public/articles.html">Read More</a>
@@ -430,13 +414,15 @@ body {
   align-items: center;
   /* Centrer les éléments horizontalement */
 }
-.class{
+
+.class {
   display: block;
   color: black;
   margin-top: 10px;
   font-size: medium;
-  font-weight: 500  ;
+  font-weight: 500;
 }
+
 /* Home Container */
 .containerHome {
   width: 85vw;
@@ -627,7 +613,7 @@ body {
   bottom: 0;
 }
 
-.overlay  a {
+.overlay a {
   background-color: rgba(255, 255, 255, 0.8);
   color: #333;
   padding: 5px 10px;
@@ -638,7 +624,7 @@ body {
   transition: background-color 0.3s;
 }
 
-.overlay  a:hover {
+.overlay a:hover {
   background-color: #ff8c00;
   color: #fff;
 }
@@ -721,7 +707,7 @@ body {
   border-radius: 5px;
   font-size: 16px;
   transition: background 0.3s;
-    
+
 }
 
 .blog-card a:hover {

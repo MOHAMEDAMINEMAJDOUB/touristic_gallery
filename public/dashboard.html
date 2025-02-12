@@ -37,14 +37,11 @@
     <div id="form-container" class="form-container" style="display: none;">
         <h2 id="form-title"></h2>
         <form id="add-form">
-            <label for="title">Title</label>
+            <label for="title" id="title-label">Title</label>
             <input type="text" id="title" name="title" required>
 
-            <label for="description" id="descriptionlabel">Description</label>
+            <label for="description" id="description-label">Description</label>
             <textarea id="description" name="description" required></textarea>
-
-            <label for="content" id="contentlabel" style="display: none">Content </label>
-            <textarea id="content" name="description" style="display: none"></textarea>
 
             <button type="button" id="submit-button" onclick="lancheEvent()">Submit</button>
             <button type="button" id="cancel" onclick="hideForm()">Cancel</button>
@@ -56,7 +53,6 @@
             window.location.replace('login.html'); // Remplace l'URL actuelle
         });
 
-
         // Capitalize the first letter of a string
         function capitalize(str) {
             return str.charAt(0).toUpperCase() + str.slice(1);
@@ -67,14 +63,31 @@
             const formContainer = document.getElementById('form-container');
             const formTitle = document.getElementById('form-title');
             const submitButton = document.getElementById('submit-button');
-            const form = document.getElementById('add-form');
+            const titleLabel = document.getElementById('title-label');
+            const descriptionLabel = document.getElementById('description-label');
+            const descriptionField = document.getElementById('description');
+            const titleField = document.getElementById('title');
 
-            form.reset(); // Reset form fields
+            document.getElementById("add-form").reset(); // Reset form fields
 
-            document.getElementById('description').style.display = (action === 'add' || action === 'modify') ? 'block' : 'none';
-            document.getElementById('descriptionlabel').style.display = (action === 'add' || action === 'modify') ? 'block' : 'none';
-            document.getElementById('content').style.display = action === 'modify' ? 'block' : 'none';
-            document.getElementById('contentlabel').style.display = action === 'modify' ? 'block' : 'none';
+            if (action === 'add') {
+                titleLabel.style.display = 'block';
+                titleField.style.display = 'block';
+                descriptionLabel.style.display = 'block';
+                descriptionField.style.display = 'block';
+                descriptionLabel.textContent = 'Description';
+            } else if (action === 'modify') {
+                titleLabel.style.display = 'block';
+                titleField.style.display = 'block';
+                descriptionLabel.style.display = 'block';
+                descriptionField.style.display = 'block';
+                descriptionLabel.textContent = 'Description to Modify';
+            } else if (action === 'delete') {
+                titleLabel.style.display = 'block';
+                titleField.style.display = 'block';
+                descriptionLabel.style.display = 'none';
+                descriptionField.style.display = 'none';
+            }
 
             formTitle.textContent = `${capitalize(action)} ${capitalize(type)}`;
             submitButton.textContent = `${capitalize(action)} ${capitalize(type)}`;
@@ -91,46 +104,36 @@
         async function lancheEvent() {
             const title = document.getElementById('title').value.trim();
             const description = document.getElementById('description').value.trim();
-            const content = document.getElementById('content').value.trim();
             const action = document.getElementById('submit-button').textContent.toLowerCase();
             const type = action.includes('article') ? 'articles' : 'destinations';
-            const port = action.includes('article') ? 5000 : 3000;
 
             try {
                 if (action.includes('add')) {
                     // Ajout d'une nouvelle ressource
-                    await axios.post(`http://localhost:${port}/${type}`, { title, description });
+                    await axios.post(`http://localhost:3001/api/${type}`, { title, description });
                     alert(`${title} has been added successfully!`);
                 } else if (action.includes('modify')) {
-                    // Fetch the resource to be modified based on both title and description
-                    const response = await axios.get(`http://localhost:${port}/${type}`, { params: { title, description } });
+                    // Fetch the resource to be modified based on title
+                    const response = await axios.get(`http://localhost:3001/api/${type}`);
+                    const resource = response.data.find(item => item.title === title);
 
-                    if (response.data.length > 0) {
-                        const resource = response.data[0]; // Assume the first match is the one to modify
-                        const updatedResource = { ...resource, description: content }; // Update description to content
-                        await axios.put(`http://localhost:${port}/${type}/${resource.id}`, updatedResource);
+                    if (resource) {
+                        const updatedResource = { ...resource, description };
+                        await axios.put(`http://localhost:3001/api/${type}/${resource.id}`, updatedResource);
                         alert(`${title} has been updated successfully!`);
                     } else {
-                        alert(`No ${type.slice(0, -1)} found with the given title and description.`);
+                        alert(`No ${type.slice(0, -1)} found with the given title.`);
                     }
                 } else if (action.includes('delete')) {
                     // Supprimer une ressource par titre
-                    try {
-                        // Recherche de la ressource à supprimer
-                        const response = await axios.get(`http://localhost:${port}/${type}`);
+                    const response = await axios.get(`http://localhost:3001/api/${type}`);
+                    const resource = response.data.find(item => item.title === title);
 
-                        const resourceToDelete = response.data.find(element => element.title === title);
-
-                        if (resourceToDelete) {
-                            // Suppression de la ressource via Axios
-                            await axios.delete(`http://localhost:${port}/${type}/${resourceToDelete.id}`);
-                            alert(`${title} has been deleted successfully!`);
-                        } else {
-                            alert(`No ${type.slice(0, -1)} found with the given title.`);
-                        }
-                    } catch (error) {
-                        console.error("Error processing the delete request:", error);
-                        alert("There was an error processing your delete request. Please try again.");
+                    if (resource) {
+                        await axios.delete(`http://localhost:3001/api/${type}/${resource.id}`);
+                        alert(`${title} has been deleted successfully!`);
+                    } else {
+                        alert(`No ${type.slice(0, -1)} found with the given title.`);
                     }
                 }
             } catch (error) {
