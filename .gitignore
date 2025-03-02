@@ -30,6 +30,10 @@ coverage
 *.tsbuildinfo
 
 # Environment variables
+<<<<<<< HEAD
 .env
 
 .vercel
+=======
+.env
+>>>>>>> 95dbdd3633b9ba69239b8f385426df1e19d92fd6

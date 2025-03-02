@@ -53,11 +53,24 @@ body {
     font-size: 1.2rem; /* Taille de l'icône */
 }
 
+/* Conteneur parent pour la barre latérale et le formulaire */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
 /* Services container */
+.Side-bar {
+    display: inline-block;
+    height: 100%;
+    width: 25%;
+    justify-items: right;
+    box-shadow: #333 5px;
+}
+
 .services {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes par ligne */
-    gap: 20px; /* Espacement entre les éléments */
     padding: 20px;
     margin: 20px auto;
     max-width: 1200px; /* Largeur maximale pour centrer le contenu */
@@ -76,6 +89,7 @@ body {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s, background 0.3s ease;
     height: 20px; /* Fixed height for consistency */
+    margin: 10px;
 }
 
 .service:hover {
@@ -91,13 +105,12 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    margin-top: 50px;
     max-width: 800px;
-    margin: 20px auto;
-    width: 700px;
+    width: 70%; /* Adjust width as needed */
     padding-right: 50px;
-    display: none; /* Hidden by default */
-
+    display: inline-block;
+    vertical-align: middle;
 }
 
 /* Form title */

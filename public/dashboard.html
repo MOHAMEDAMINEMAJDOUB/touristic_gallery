@@ -20,32 +20,34 @@
         </button>
     </header>
 
-    <!-- Services Section -->
-    <div class="services">
-        <!-- First row -->
-        <div class="service" id="1" onclick="showForm('article', 'add')">Add Article</div>
-        <div class="service" id="2" onclick="showForm('article', 'modify')">Modify Article</div>
-        <div class="service" id="3" onclick="showForm('article', 'delete')">Delete Article</div>
+    <div class="main-container">
+        <div class="Side-bar">
+            <div class="services">
+                <!-- First row -->
+                <div class="service" id="1" onclick="showForm('article', 'add')">Add Article</div>
+                <div class="service" id="2" onclick="showForm('article', 'modify')">Modify Article</div>
+                <div class="service" id="3" onclick="showForm('article', 'delete')">Delete Article</div>
 
-        <!-- Second row -->
-        <div class="service" id="4" onclick="showForm('destination', 'add')">Add Destination</div>
-        <div class="service" id="5" onclick="showForm('destination', 'modify')">Modify Destination</div>
-        <div class="service" id="6" onclick="showForm('destination', 'delete')">Delete Destination</div>
-    </div>
+                <!-- Second row -->
+                <div class="service" id="4" onclick="showForm('destination', 'add')">Add Destination</div>
+                <div class="service" id="5" onclick="showForm('destination', 'modify')">Modify Destination</div>
+                <div class="service" id="6" onclick="showForm('destination', 'delete')">Delete Destination</div>
+            </div>
+        </div>
 
-    <!-- Add/Modify/Delete Article/Destination Form (Initially hidden) -->
-    <div id="form-container" class="form-container" style="display: none;">
-        <h2 id="form-title"></h2>
-        <form id="add-form">
-            <label for="title" id="title-label">Title</label>
-            <input type="text" id="title" name="title" required>
+        <div class="form-container" id="form-container" style="display: none;">
+            <h2 id="form-title"></h2>
+            <form id="add-form">
+                <label for="title" id="title-label">Title</label>
+                <input type="text" id="title" name="title" required>
 
-            <label for="description" id="description-label">Description</label>
-            <textarea id="description" name="description" required></textarea>
+                <label for="description" id="description-label">Description</label>
+                <textarea id="description" name="description" required></textarea>
 
-            <button type="button" id="submit-button" onclick="lancheEvent()">Submit</button>
-            <button type="button" id="cancel" onclick="hideForm()">Cancel</button>
-        </form>
+                <button type="button" id="submit-button" onclick="lancheEvent()">Submit</button>
+                <button type="button" id="cancel" onclick="hideForm()">Cancel</button>
+            </form>
+        </div>
     </div>
 
     <script>
